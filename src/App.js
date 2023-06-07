@@ -1,25 +1,22 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from "react";
+import Menu from "./components/Menu";
+import Customers from "./components/Customers";
+import data from "./data.json";
 
-function App() {
+const App = () => {
+  const [activeItem, setActiveItem] = useState("Home");
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+    <>
+      <header>
+        <Menu activeItem={activeItem} setActiveItem={setActiveItem} />
       </header>
-    </div>
+      <main>
+        <h1>Привіт {data.user}</h1>
+        {activeItem === "Customers" && <Customers customers={data.customers} />}
+      </main>
+    </>
   );
-}
+};
 
 export default App;
